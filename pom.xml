@@ -962,6 +962,17 @@ But it might be needed for Java 10, because I get this error, that I don't get w
 			<version>1.4.01</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.contrastsecurity</groupId>
+			<artifactId>java-sarif</artifactId>
+			<version>${version.java-sarif}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${version.jackson}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -1215,6 +1226,7 @@ But it might be needed for Java 10, because I get this error, that I don't get w
 		<version.exec.maven>1.6.0</version.exec.maven>
 		<version.hibernate>3.6.10.Final</version.hibernate>
 		<version.jackson>2.9.8</version.jackson>
+		<version.java-sarif>1.0</version.java-sarif>
 		<version.jersey>1.19.4</version.jersey>
 		<version.slf4j>1.7.30</version.slf4j>
 		<version.spotbugs.maven>4.0.4</version.spotbugs.maven>

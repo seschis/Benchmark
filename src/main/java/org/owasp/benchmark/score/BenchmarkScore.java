@@ -50,53 +50,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 
-import org.owasp.benchmark.score.parsers.AcunetixReader;
-import org.owasp.benchmark.score.parsers.AppScanDynamicReader;
-import org.owasp.benchmark.score.parsers.AppScanDynamicReader2;
-import org.owasp.benchmark.score.parsers.AppScanSourceReader;
-import org.owasp.benchmark.score.parsers.AppScanSourceReader2;
-import org.owasp.benchmark.score.parsers.ArachniReader;
-import org.owasp.benchmark.score.parsers.BurpReader;
-import org.owasp.benchmark.score.parsers.CASTAIPReader;
-import org.owasp.benchmark.score.parsers.CheckmarxESReader;
-import org.owasp.benchmark.score.parsers.CheckmarxReader;
-import org.owasp.benchmark.score.parsers.CheckmarxIASTReader;
-import org.owasp.benchmark.score.parsers.ContrastReader;
-import org.owasp.benchmark.score.parsers.Counter;
-import org.owasp.benchmark.score.parsers.CoverityReader;
-import org.owasp.benchmark.score.parsers.FaastReader;
-import org.owasp.benchmark.score.parsers.FindbugsReader;
-import org.owasp.benchmark.score.parsers.FortifyReader;
-import org.owasp.benchmark.score.parsers.FusionLiteInsightReader;
-import org.owasp.benchmark.score.parsers.HCLReader;
-import org.owasp.benchmark.score.parsers.HdivReader;
-import org.owasp.benchmark.score.parsers.JuliaReader;
-import org.owasp.benchmark.score.parsers.KiuwanReader;
-import org.owasp.benchmark.score.parsers.LGTMReader;
-import org.owasp.benchmark.score.parsers.NetsparkerReader;
-import org.owasp.benchmark.score.parsers.NoisyCricketReader;
-import org.owasp.benchmark.score.parsers.OverallResult;
-import org.owasp.benchmark.score.parsers.OverallResults;
-import org.owasp.benchmark.score.parsers.ParasoftReader;
-import org.owasp.benchmark.score.parsers.PMDReader;
-import org.owasp.benchmark.score.parsers.QualysWASReader;
-import org.owasp.benchmark.score.parsers.Rapid7Reader;
-import org.owasp.benchmark.score.parsers.Reader;
-import org.owasp.benchmark.score.parsers.SeekerReader;
-import org.owasp.benchmark.score.parsers.SemgrepReader;
-import org.owasp.benchmark.score.parsers.ShiftLeftReader;
-import org.owasp.benchmark.score.parsers.SnappyTickReader;
-import org.owasp.benchmark.score.parsers.SonarQubeReader;
-import org.owasp.benchmark.score.parsers.SourceMeterReader;
-import org.owasp.benchmark.score.parsers.TestCaseResult;
-import org.owasp.benchmark.score.parsers.TestResults;
-import org.owasp.benchmark.score.parsers.ThunderScanReader;
-import org.owasp.benchmark.score.parsers.VeracodeReader;
-import org.owasp.benchmark.score.parsers.VisualCodeGrepperReader;
-import org.owasp.benchmark.score.parsers.WapitiReader;
-import org.owasp.benchmark.score.parsers.WebInspectReader;
-import org.owasp.benchmark.score.parsers.XanitizerReader;
-import org.owasp.benchmark.score.parsers.ZapReader;
+import org.owasp.benchmark.score.parsers.*;
 import org.owasp.benchmark.score.report.Report;
 import org.owasp.benchmark.score.report.ScatterHome;
 import org.owasp.benchmark.score.report.ScatterVulns;
@@ -694,9 +648,18 @@ public class BenchmarkScore {
 			}
 		}
 
+
+		// TODO: For sarif files, need to peek at the ToolComponent to decide what reader to use.
+
+//		else if ( filename.endsWith( ".sarif" ) ) {
+//			tr = new LGTMReader().parse( fileToParse );
+//		}
+
 		else if ( filename.endsWith( ".sarif" ) ) {
-			tr = new LGTMReader().parse( fileToParse );
+			tr = new ContrastScanReader().parse( fileToParse );
 		}
+
+
 
 		else if ( filename.endsWith( ".threadfix" ) ) {
 			tr = new KiuwanReader().parse( fileToParse );
